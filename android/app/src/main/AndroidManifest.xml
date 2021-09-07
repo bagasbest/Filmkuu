@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.filmkuu.filmkuu.filmkuu">
+    package="com.filmku.filmku">
    <application
-        android:label="filmkuu"
+        android:label="Filmku"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

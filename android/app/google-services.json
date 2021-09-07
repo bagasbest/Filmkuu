@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "30974207487",
-    "project_id": "filmkuu-c3637",
-    "storage_bucket": "filmkuu-c3637.appspot.com"
+    "project_number": "70604466891",
+    "project_id": "filmku-61e6a",
+    "storage_bucket": "filmku-61e6a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:30974207487:android:2ddd6fefccc86f41e4f3ca",
+        "mobilesdk_app_id": "1:70604466891:android:33b85361c796dc5891c94e",
         "android_client_info": {
-          "package_name": "com.filmkuu.filmkuu.filmkuu"
+          "package_name": "com.filmku.filmku"
         }
       },
       "oauth_client": [
         {
-          "client_id": "30974207487-ptuckfovtugb6rodeqftba6iiakf8bbe.apps.googleusercontent.com",
+          "client_id": "70604466891-2cejii2svoeld8d42ir0fk776lq9hip6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCRrmybIkxB7NwzlHqpS4Z-8y3hyUuuFMQ"
+          "current_key": "AIzaSyBVLQLAqOJ_9MZ8fw7kpBZ99a0EcNVQRT8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "30974207487-ptuckfovtugb6rodeqftba6iiakf8bbe.apps.googleusercontent.com",
+              "client_id": "70604466891-2cejii2svoeld8d42ir0fk776lq9hip6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

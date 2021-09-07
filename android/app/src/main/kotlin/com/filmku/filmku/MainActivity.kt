@@ -1,4 +1,4 @@
-package com.filmkuu.filmkuu.filmkuu
+package com.filmku.filmku
 
 import io.flutter.embedding.android.FlutterActivity
 

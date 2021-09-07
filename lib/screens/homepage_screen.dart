@@ -2,6 +2,7 @@ import 'package:filmkuu/screens/favorite/favorite_screen.dart';
 import 'package:filmkuu/screens/movies/movies_add_screen.dart';
 import 'package:filmkuu/screens/movies/movies_search_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:filmkuu/constants/color_constant.dart' as Constant;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFF060E3E),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Route route =
@@ -27,166 +27,179 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.push(context, route);
         },
         child: Icon(Icons.add),
+        backgroundColor: Constant.colorButton,
       ),
-      body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.only(
-            left: 16,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Constant.colorPrimary,
+              Constant.colorSecondary,
+            ],
+            begin: FractionalOffset.topCenter,
+            end: FractionalOffset.bottomCenter,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                  top: 10,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Filmkuu',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
+        ),
+        child: SafeArea(
+          child: Container(
+            margin: EdgeInsets.only(
+              left: 16,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                    top: 10,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Filmkuu',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          child: Icon(
-                            Icons.logout,
-                            color: Colors.red,
+                      Row(
+                        children: [
+                          GestureDetector(
+                            child: Icon(
+                              Icons.logout,
+                              color: Colors.red,
+                            ),
+                            onTap: () {
+                              _showAlertDialogLogout(context);
+                            },
                           ),
-                          onTap: () {
-                            _showAlertDialogLogout(context);
-                          },
+                          SizedBox(
+                            width: 16,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Route route = MaterialPageRoute(
+                                  builder: (context) => MoviesSearchScreen());
+                              Navigator.push(context, route);
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 50,
+                              child: Icon(
+                                Icons.search,
+                                color: Colors.black,
+                              ),
+                              decoration: BoxDecoration(
+                                  color: Colors.white24,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20))),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Route route =
+                        MaterialPageRoute(builder: (context) => FavoriteScreen());
+                    Navigator.push(context, route);
+                  },
+                  child: Container(
+                    width: 180,
+                    height: 35,
+                    padding: EdgeInsets.only(left: 7),
+                    decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.favorite,
+                          color: Colors.red,
                         ),
                         SizedBox(
-                          width: 16,
+                          width: 10,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Route route = MaterialPageRoute(
-                                builder: (context) => MoviesSearchScreen());
-                            Navigator.push(context, route);
-                          },
-                          child: Container(
-                            height: 40,
-                            width: 50,
-                            child: Icon(
-                              Icons.search,
-                              color: Colors.white,
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white24,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20))),
+                        Text(
+                          'Lihat Film Favoritmu',
+                          style: TextStyle(
+                            color: Colors.black,
                           ),
                         ),
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Route route =
-                      MaterialPageRoute(builder: (context) => FavoriteScreen());
-                  Navigator.push(context, route);
-                },
-                child: Container(
-                  width: 180,
-                  height: 35,
-                  padding: EdgeInsets.only(left: 7),
-                  decoration: BoxDecoration(
-                      color: Colors.white24,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.favorite,
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.22,
+                  child: ListView(
+                    // This next line does the trick.
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      Container(
+                        width: 160.0,
                         color: Colors.red,
                       ),
-                      SizedBox(
-                        width: 10,
+                      Container(
+                        width: 160.0,
+                        color: Colors.blue,
                       ),
-                      Text(
-                        'Lihat Film Favoritmu',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
+                      Container(
+                        width: 160.0,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        width: 160.0,
+                        color: Colors.yellow,
+                      ),
+                      Container(
+                        width: 160.0,
+                        color: Colors.orange,
                       ),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.22,
-                child: ListView(
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    Container(
-                      width: 160.0,
-                      color: Colors.red,
-                    ),
-                    Container(
-                      width: 160.0,
-                      color: Colors.blue,
-                    ),
-                    Container(
-                      width: 160.0,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      width: 160.0,
-                      color: Colors.yellow,
-                    ),
-                    Container(
-                      width: 160.0,
-                      color: Colors.orange,
-                    ),
-                  ],
+                SizedBox(
+                  height: 16,
                 ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Text(
-                'Film Terbaru Menantimu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                Text(
+                  'Film Terbaru Menantimu',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.49,
-                width: MediaQuery.of(context).size.width,
-                child: ListView(
-                  // This next line does the trick.
-                  scrollDirection: Axis.vertical,
-                  children: <Widget>[
-                    _showListView(),
-                    _showListView(),
-                    _showListView(),
-                    _showListView(),
-                    _showListView(),
-                  ],
+                SizedBox(
+                  height: 16,
                 ),
-              ),
-            ],
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.49,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView(
+                    // This next line does the trick.
+                    scrollDirection: Axis.vertical,
+                    children: <Widget>[
+                      _showListView(),
+                      _showListView(),
+                      _showListView(),
+                      _showListView(),
+                      _showListView(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -215,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
             'Mulan Session 2  Battle Of Chi Bi',
             maxLines: 1,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
